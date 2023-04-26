@@ -21,6 +21,7 @@
 #include <SPI.h>
 #include <SD.h>
 #else
+#define BOARD_HAS_1BIT_SDMMC
 #include <FS.h>
 #include <SD_MMC.h>
 #endif
@@ -160,7 +161,7 @@ bool write_data_to_file(T* data)
   
   #ifdef SD_WRITE_COUNT_FLAG
   SD_save.SD_write_count++;
-  if(SD_save.SD_write_count>=SD_write_count_gain){
+  if(SD_save.SD_write_count>=SD_save.SD_write_count_gain){
     SD_save.SD_write_count=0;
      SD_save.file.flush();
   }
